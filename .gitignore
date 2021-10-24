@@ -1,0 +1,23 @@
+# install logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# build
+target/
+
+# pyenv
+.python-version
+
+# virtualenv
+.env
+venv/
+
+# idea
+.idea/
+
+# folder for tests
+test/
+
+# build folder
+build/
+

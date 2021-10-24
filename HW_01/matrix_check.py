@@ -5,7 +5,6 @@ import numpy as np
 start_matrix_value = 10
 end_matrix_value = 30
 matrix_side = 10
-nl = '\n'
 
 
 def enter_checked_value():
@@ -31,8 +30,8 @@ def check_value_position(check_value):
             if matrix[row][column] == check_value:
                 check_list_row.append(row)
                 check_list_column.append(column)
-    print(f' {str(matrix)[1:-1]}{nl}Numbers range: ({start_matrix_value}, {end_matrix_value}){nl}Chosen number: '
-          f'{check_value}{nl}Rows: {str(check_list_row)[1:-1]}{nl}Columns: {str(check_list_column)[1:-1]}')
+    print(f' {str(matrix)[1:-1]}\nNumbers range: ({start_matrix_value}, {end_matrix_value})\nChosen number: '
+          f'{check_value}\nRows: {str(check_list_row)[1:-1]}\nColumns: {str(check_list_column)[1:-1]}')
 
 
 check_value_position(enter_checked_value())

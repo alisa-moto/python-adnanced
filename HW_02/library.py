@@ -1,17 +1,14 @@
 from book import Book
-# from reader import Reader
 
 
 class Library:
     def __init__(self, books_list, readers_list):
         self.books_list = books_list
         self.readers_list = readers_list
-        # self.__present_books = self.books_list
-        # self.__present_readers = self.readers_list
 
     def add_book_to_library(self):
         book_id, book_name, book_author, book_date = input("Please enter book id, title, author name, year of edition "
-                                                           "split by comma as in the example '4,River,Enthony Bach,"
+                                                           "split by comma as in the example '4,River,Anthony Bach,"
                                                            "1956': ").split(',')
         book = Book(book_id, book_name, book_author, book_date, None)
         return self.books_list.append(book)
@@ -33,30 +30,36 @@ class Library:
 
     def give_book_to_reader(self, book_id, reader_id):
         for book in self.books_list:
-            if book.book_id == book_id:
+            if book.book_id == book_id and book.book_id_reader is not None:
+                print("This book is already taken.")
+                break
+            elif book.book_id == book_id:
                 book.book_id_reader = reader_id
-        for reader in self.readers_list:
-            if reader.reader_id == reader_id:
-                reader.reader_book_id = book_id
+            for reader in self.readers_list:
+                if reader.reader_id == reader_id:
+                    reader.reader_book_id = book_id
 
-    def take_book_from_reader(self, book_id, reader_id): # __present_books __present_readers
+    def take_book_from_reader(self, book_id, reader_id):
         for book in self.books_list:
-            if book.book_id == book_id:
+            if book.book_id == book_id and book.book_id_reader is None:
+                print("This book is not taken.")
+                break
+            elif book.book_id == book_id:
                 book.book_id_reader = None
-        for reader in self.readers_list:
-            if reader.reader_id == reader_id:
-                reader.reader_book_id = None
+            for reader in self.readers_list:
+                if reader.reader_id == reader_id:
+                    reader.reader_book_id = None
 
     def print_all_books(self):
         for book in self.books_list:
             print(book.book_id, book.book_name, book.book_author, book.book_date, book.book_id_reader)
 
-    def print_books_in_library(self): # __present_books
+    def print_books_in_library(self):
         for book in self.books_list:
             if book.book_id_reader is None:
                 print(book.book_id, book.book_name, book.book_author, book.book_date, book.book_id_reader)
 
-    def print_taken_books(self): # __present_books
+    def print_taken_books(self):
         for book in self.books_list:
             if book.book_id_reader is not None:
                 print(book.book_id, book.book_name, book.book_author, book.book_date, book.book_id_reader)
@@ -83,7 +86,7 @@ class Library:
         for reader in self.readers_list:
             print(reader.reader_id, reader.first_name, reader.last_name, reader.birth_year, reader.reader_book_id)
 
-    def print_readers_with_book(self): # __present_books
+    def print_readers_with_book(self):
         for reader in self.readers_list:
             if reader.reader_book_id is not None:
                 print(reader.reader_id, reader.first_name, reader.last_name, reader.birth_year, reader.reader_book_id)

@@ -19,6 +19,6 @@ class Reader:
     @staticmethod
     def create_reader():
         reader_id, first_name, last_name, birth_year = input("Please enter your id, first name, last name, birth "
-                                                             "year split by comma as in the example '3,Linn,Lindon,"
+                                                             "year split by comma as in the example '4,Linn,Lindon,"
                                                              "1997': ").split(',')
         return Reader(reader_id, first_name, last_name, birth_year, None)

@@ -11,7 +11,7 @@ class Library:
 
     def add_book_to_library(self):
         book_id, book_name, book_author, book_date = input("Please enter book id, title, author name, year of edition "
-                                                           "split by comma as in the example '4,Book4,Enthony Bach,"
+                                                           "split by comma as in the example '4,River,Enthony Bach,"
                                                            "1956': ").split(',')
         book = Book(book_id, book_name, book_author, book_date, None)
         return self.books_list.append(book)
@@ -73,19 +73,17 @@ class Library:
         for book in sorted(self.books_list, key=lambda x: x.book_date):
             print(book.book_id, book.book_name, book.book_author, book.book_date, book.book_id_reader)
 
-    # def create_reader(self):
-    #     reader_id, first_name, last_name, birth_year = input("Please enter reader id, first name, last name, birth "
-    #                                                          "year split by comma as in the example '3,Linn,Lindon,"
-    #                                                          "1997': ").split(',')
-    #     reader = Reader(reader_id, first_name, last_name, birth_year, None)
-    #     return self.readers_list.append(reader)
-
     def delete_reader(self):
         reader_id = input("Please enter reader id: ")
         for reader in self.readers_list:
             if reader.reader_id == int(reader_id):
-                self.books_list.remove(reader)
+                self.readers_list.remove(reader)
 
     def print_all_readers(self):
         for reader in self.readers_list:
             print(reader.reader_id, reader.first_name, reader.last_name, reader.birth_year, reader.reader_book_id)
+
+    def print_readers_with_book(self): # __present_books
+        for reader in self.readers_list:
+            if reader.reader_book_id is not None:
+                print(reader.reader_id, reader.first_name, reader.last_name, reader.birth_year, reader.reader_book_id)

@@ -21,10 +21,6 @@ for i in MyRange(10, -5, -1):
 
 print()
 
-for i in MyRange(1.3):
-    print(i, end='')
-
-print()
 
 # 012
 # 12

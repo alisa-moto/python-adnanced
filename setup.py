@@ -6,5 +6,5 @@ setup(
     description='A library package with 3 classes Library, Book, Reader for student work',
     author='Alisa Motorkina',
     author_email='lisa.motorkina@gmail.com',
-    packages=['HW_05', 'HW_05.utils']
+    packages=['HW_05', 'HW_05.units']
 )

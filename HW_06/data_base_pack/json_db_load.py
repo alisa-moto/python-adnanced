@@ -33,7 +33,7 @@ class JsonDBLoad(BaseDB, ABC):
                 [
                     book.book_to_dict()
                     for book in books_obj
-                ], file)
+                ], file, indent=1)
 
     def load_readers_from_db(self):
         """Method to load full Reader objects list as reverted from json dictionary"""
@@ -56,7 +56,7 @@ class JsonDBLoad(BaseDB, ABC):
                 [
                     reader.reader_to_dict()
                     for reader in readers_obj
-                ], file)
+                ], file, indent=1)
 
     # detailed add, delete, update methods
     # TODO: add logic to  the detailed methods

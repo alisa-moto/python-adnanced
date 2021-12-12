@@ -6,7 +6,6 @@ from HW_site.library.units.book import Book
 from HW_site.library.units.reader import Reader
 
 
-
 app = Flask(__name__, template_folder="../site/templates",
             static_folder="../site/static")
 

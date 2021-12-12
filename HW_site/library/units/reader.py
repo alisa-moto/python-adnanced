@@ -16,8 +16,7 @@ class Reader(Base):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     birth_year = Column(Integer, nullable=False)
-    book_id_reader = Column(Integer, ForeignKey('books.book_id'), nullable=True)
-    book = relationship('Book', backref='readers')
+    book_id_reader = Column(Integer, nullable=True)
 
     """Class to create reader in library with unique parameter reader_id to each item"""
     def __init__(self, first_name: str,

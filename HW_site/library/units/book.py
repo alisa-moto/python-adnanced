@@ -32,8 +32,7 @@ class Book(Base):
         self.book_id_reader = book_id_reader
 
     def __str__(self):
-        return f'Book id: {self.book_id}, "{self.book_name}", {self.book_author}, {self.book_date}, ' \
-               f'Reader id: {self.__book_id_reader}'
+        return f'Book id: {self.book_id}, "{self.book_name}", {self.book_author}, {self.book_date}'
 
     def __repr__(self):
         cls_name = __class__.__name__

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="central-area">
+
+<script src="scripts/table_sort.js"></script>
+ 	<div class="load-file-field">
+		{% if message %}
+		<h4>{{message}}</h4>
+		<br><br>
+    	{% endif %}
+ 		<span class="load-new-file-lable">
+ 			Delete book from library:
+ 		</span>
+
+			<form method="post">
+				<center>
+        		<input type="text" id="id" name="book_id" placeholder="Book Id" required>
+				<br><br>
+
+        	<button class="mid-button" type="submit">Submit</button>
+        	<button class="mid-button" type="reset">Reset</button>
+			</center>
+		</form>
+ 	</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,215 @@
+body, html {
+	margin: 0px;
+	padding: 0px;
+}
+.head-text {
+	position: relative;
+	top: -5px;
+}
+.right-head-text {
+	vertical-align: sub
+}
+.second-head {
+	position: relative;
+	border-bottom: 3px solid;
+	border-color: #B8B8B8;
+	height: 30px;
+	text-align: right;
+	width: 100%;
+}
+
+.main-area {
+	display: grid;
+	grid-template-columns: 16% 65% 19%;
+	position: absolute;
+	top: 81px;
+	bottom: 27px;
+	left: 0px;
+	right: 0px;
+}
+
+.header {
+	border-bottom: 3px solid;
+	border-color: #B8B8B8;
+	height: 45px;
+	text-align: center;
+	width: 100%;
+}
+
+.left-area {
+	padding: 10px;
+	border-right: 3px solid;
+	border-color: #B8B8B8;
+	background-image: url(../static/images/background/grey.jpg);
+
+}
+.central-area {
+	border-right: 3px solid;
+	border-color: #B8B8B8;
+	background-color: #F0F0F0;
+
+}
+.right-area {
+	padding: 10px;
+	text-align: left;
+	background-image: url(../static/images/background/grey.jpg);
+}
+.login-form {
+	border: 3px solid #B8B8B8;
+	padding: 10px;
+	margin: 10px;
+	height: 100px;
+	background-color: #E0E0E0;
+}
+.footer {
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	border-top: 3px solid;
+	border-color: #B8B8B8;
+	height: 25px;
+	text-align: center;
+	width: 100%;
+}
+.load-file-field {
+	border: 3px solid #B8B8B8;
+	padding: 5px;
+	margin: 60px;
+	height: 200px;
+	background-color: #E0E0E0;
+}
+.get-from-server
+{
+	border: 3px solid #B8B8B8;
+	padding: 5px;
+	margin: 10px;
+	height: 90px;
+	background-color: #E0E0E0;
+}
+
+table {
+	width: 100%;
+	padding: 5px;
+}
+
+.first-cell {
+	text-align: left;
+	border-bottom: 3px solid #B8B8B8;
+}
+.downloads-cell {
+	text-align: center;
+	border-bottom: 3px solid #B8B8B8;
+}
+.downloads-header {
+	cursor: pointer;
+	border-bottom: 3px solid #B8B8B8;
+}
+
+.login-lable
+{
+	position: relative;
+	left: -27px;
+}
+
+.authorization
+{
+	position: relative;
+	left: 180px;
+
+}
+.login-input
+{
+	position: relative;
+	bottom: 20px;
+	left: +60px;
+}
+.password-lable
+{
+	position: relative;
+	bottom: 17px;
+	left: -23px;
+}
+.password-input
+{
+	position: relative;
+	bottom: 35px;
+	left: +60px;	
+}
+.remember-lable
+{
+	position: relative;
+	bottom: 34px;
+	left: -31px;	
+}
+.remember
+{
+	position: relative;
+	bottom: 52px;
+	left: +60px;	
+}
+.login-password-input
+{
+	position: relative;
+	bottom: 52px;
+	left: +60px;	
+}
+
+/* Load new file section*/
+.load-new-file-lable
+{
+	position: relative;
+	bottom: 4px;
+}
+.upload-file-button
+{
+	position: relative;
+	bottom: -7px;
+	height:25px;
+	width:100px
+}
+.selected-file-field
+{
+	position: relative;
+	bottom: +50px;
+	left: 110px;
+	height:19px;
+	width:87%;
+}
+/* Get file from server section*/
+.get-from-server-lable
+{
+	position: relative;
+	top: -3px;
+	
+}
+.request-file-field
+{
+	position: relative;
+	top: -1px;
+	height:19px;
+	width:98%;
+}
+.upload-to-vault-lable
+{
+	position: relative;
+	top: -1px;
+}
+.should-upload
+{
+	position: relative;
+	bottom: 19px;
+	left: 190px;
+}
+.request-file-button
+{
+	position: relative;
+	bottom: 20px;
+	height: 25px;
+	width: 100px
+}
+.mid-button
+{
+	height:25px;
+	width:100px
+}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="central-area">
+  <div class="login-form">
+    <div class="authorization">
+      <div class="login-lable">
+        Username:
+      </div>
+      <div class="login-input">
+        <input type="text" name="user_id">
+      </div>
+      <div class="password-lable">
+        Password:
+      </div>
+      <div class="password-input">
+        <input type="text" name="password">
+      </div>
+      <div class="remember-lable">
+        Remember:
+      </div>
+      <div class="remember">
+        <input type="checkbox" name="remember_checkbox" value="on">
+      </div>
+      <div class="login-password-input">
+        <a href="logged_user.html"><input type="button" name="enter_login_password"value="Sign in"></a>
+      </div>
+    </div>
+</div>
+</div>
+{% endblock %}

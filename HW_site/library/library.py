@@ -108,7 +108,7 @@ class Library:
         :return:
         str with data of deleted book
         """
-        book = self.__storage.load_books_from_db_by_input(temp_id=temp_id)
+        book = self.__storage.load_books_from_db_by_input(book_id=temp_id)
         if not book:
             return f'There is no book with id = {temp_id}'
 
@@ -141,7 +141,7 @@ class Library:
         :return:
         str with data of deleted reader
         """
-        reader = self.__storage.load_books_from_db_by_input(temp_id=temp_id)
+        reader = self.__storage.load_books_from_db_by_input(reader_id=temp_id)
         if not reader:
             return f'There is no reader with id = {temp_id}'
 

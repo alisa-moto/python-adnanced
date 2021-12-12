@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="central-area">
+
+<script src="scripts/table_sort.js"></script>
+ 	<div class="load-file-field">
+		{% if message %}
+		<h3>{{message}}</h3>
+		<br><br>
+    	{% endif %}
+ 		<span class="load-new-file-lable">
+ 			Add a new book to library:
+ 		</span>
+
+			<form method="post">
+				<center>
+        		<input type="text" id="title" name="title" placeholder="Title" required>
+        		<input type="text" id="author" name="author" placeholder="Author" required>
+        		<input type="text" id="year" name="year" placeholder="Year" required>
+				<br><br>
+
+        	<button class="mid-button" type="submit">Submit</button>
+        	<button class="mid-button" type="reset">Reset</button>
+			</center>
+		</form>
+ 	</div>
+
+</div>
+{% endblock %}

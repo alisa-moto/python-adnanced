@@ -31,8 +31,7 @@ class Reader(Base):
         self.reader_book_id = reader_book_id
 
     def __str__(self):
-        return f'Reader id: {self.reader_id}: {self.first_name}, {self.last_name}, {self.birth_year}, ' \
-               f'Book id: {self.reader_book_id}'
+        return f'Reader id: {self.reader_id}, {self.first_name}, {self.last_name}, {self.birth_year}'
 
     def __repr__(self):
         cls_name = __class__.__name__

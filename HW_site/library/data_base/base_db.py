@@ -28,7 +28,7 @@ class BaseDB(ABC):
         pass
 
     @abstractmethod
-    def load_readers_from_db_by_input(self, **kwargs):
+    def load_reader_from_db_by_input(self, **kwargs):
         pass
 
     @abstractmethod

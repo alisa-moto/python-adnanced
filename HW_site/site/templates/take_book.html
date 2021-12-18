@@ -7,16 +7,15 @@
     {% endif %}
 
     {% if books %}
-        <h2>Select book for deletion</h2>
+        <h2>All available books in library</h2>
         <form method="post">
             <table id="myTable">
                 <tr>
                     <th class="downloads-header">#</th>
-                    <th class="downloads-header" onclick="sortTable(1)">Id</th>
-                    <th class="downloads-header" onclick="sortTable(2)">Title</th>
-                    <th class="downloads-header" onclick="sortTable(3)">Author</th>
-                    <th class="downloads-header" onclick="sortTable(4)">Pub. Year</th>
-                    <th class="downloads-header" onclick="sortTable(5)">In stock</th>
+                    <th class="downloads-header" onclick="sortTable(0)">Id</th>
+                    <th class="downloads-header" onclick="sortTable(1)">Title</th>
+                    <th class="downloads-header" onclick="sortTable(2)">Author</th>
+                    <th class="downloads-header" onclick="sortTable(3)">Pub. Year</th>
                 </tr>
                 {% for book in books %}
                     <tr>
@@ -25,17 +24,12 @@
                         <td>{{book.book_name}}</td>
                         <td>{{book.book_author}}</td>
                         <td>{{book.book_date}}</td>
-                        {% if book.reader %}
-                            <td>No</td>
-                        {% else %}
-                            <td>Yes</td>
-                        {% endif %}
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
             <center>
-                <button type="submit" class="mid-button">Delete</button>
+                <button type="submit" class="mid-button">Select</button>
                 <button type="reset" class="mid-button">Reset</button>
             </center>
         </form>

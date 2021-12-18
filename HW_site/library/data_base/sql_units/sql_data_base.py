@@ -58,7 +58,7 @@ class SQLDataBase(BaseDB):
         return True
 
     def change_book_in_db(self, books_obj: Book) -> bool:
-        book = self.__session.query(Book).filter(Book.id == books_obj.id).first()
+        book = self.__session.query(Book).filter(Book.book_id == books_obj.book_id).first()
 
         if not book:
             return False
@@ -74,12 +74,12 @@ class SQLDataBase(BaseDB):
     def load_readers_from_db(self) -> list:
         return self.__session.query(Reader).all()
 
-    def load_readers_from_db_by_input(self, **kwargs):
+    def load_reader_from_db_by_input(self, **kwargs):
         for key, _ in kwargs.items():
             if key not in dir(Reader):
                 return None
 
-        return self.__session.query(Reader).filter_by(**kwargs).all()
+        return self.__session.query(Reader).filter_by(**kwargs)
 
     def add_reader_to_db(self, reader_obj: Reader) -> bool:
         self.__session.add(reader_obj)
@@ -106,7 +106,7 @@ class SQLDataBase(BaseDB):
         return True
 
     def change_reader_in_db(self, reader_obj: Reader) -> bool:
-        reader = self.__session.query(Reader).filter(Reader.id == reader_obj.id).first()
+        reader = self.__session.query(Reader).filter(Reader.reader_id == reader_obj.reader_id).first()
 
         if not reader:
             return False

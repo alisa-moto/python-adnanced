@@ -1,11 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 
-from HW_site.library.data_base.base_db import BaseDB
-from HW_site.library.data_base.sql_units.base_sqlalchemy import Base
-from HW_site.library.units.book import Book
-from HW_site.library.units.reader import Reader
-from HW_site.library.units.user import UserCredentials
+from HW_13.data_base.base_db import BaseDB
+from HW_13.data_base.sql_units.base_sqlalchemy import Base
+from HW_13.units.book import Book
+from HW_13.units.reader import Reader
 
 
 class SQLDataBase(BaseDB):
@@ -82,9 +81,8 @@ class SQLDataBase(BaseDB):
 
         return self.__session.query(Reader).filter_by(**kwargs)
 
-    def add_reader_to_db(self, reader_obj: Reader, user_obj: UserCredentials) -> bool:
+    def add_reader_to_db(self, reader_obj: Reader) -> bool:
         self.__session.add(reader_obj)
-        self.__session.add(user_obj)
         try:
             self.__session.commit()
         except:
@@ -125,5 +123,4 @@ class SQLDataBase(BaseDB):
         return self.__session.query(Reader).filter_by(reader_id=reader_id).first()
 
     def load_reader_by_email(self, email: str) -> Reader:
-        user_credentials = self.__session.query(UserCredentials.reader_id).filter_by(email=email).first()
-        return self.__session.query(Reader).filter_by(reader_id=user_credentials.reader_id).first()
+        return self.__session.query(Reader).filter_by(email=email).first()

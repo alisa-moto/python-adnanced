@@ -1,7 +1,6 @@
-from HW_site.library.data_base.base_db import BaseDB
-from HW_site.library.units.book import Book
-from HW_site.library.units.reader import Reader
-from HW_site.library.units.user import UserCredentials
+from HW_13.data_base.base_db import BaseDB
+from HW_13.units.book import Book
+from HW_13.units.reader import Reader
 
 """
 The module for the library with readers and books lists in it
@@ -21,71 +20,80 @@ class Library:
             self.__storage.save_readers_to_db(readers_list)
 
     # def __get_book_by_id(self, _book_id: int):
-    #     for book in self.__books_list:
+    #     for book in self.books_list:
     #         if book.get_book_id() == _book_id:
     #             return book
     #     else:
     #         return None
     #
     # def __get_reader_by_id(self, _reader_id: int):
-    #     for reader in self.__readers_list:
+    #     for reader in self.readers_list:
     #         if reader.get_reader_id() == _reader_id:
     #             return reader
     #     else:
     #         return None
 
-    # @staticmethod
-    # def ask_for_ids():
-    #     """
-    #     Method asks user for book_id and reader_id, checks if there are a valid positive integers
-    #     :return:
-    #     book_id -> int
-    #     reader_id -> int
-    #     """
-    #     while True:
-    #         book_id, reader_id = input("Please enter book id and reader id split by comma: ").split(',')
-    #         if book_id.isdigit() and reader_id.isdigit():
-    #             return int(book_id), int(reader_id)
-    #         else:
-    #             print("You have entered not a valid positive integers as ids.")
-    #
-    # @staticmethod
-    # def ask_for_book_params():
-    #     """
-    #     Method asks user for book_name, book_author, book_date and validate that user entered all these parameters
-    #     :return:
-    #     book_name -> str
-    #     book_author -> str
-    #     book_date -> int
-    #     """
-    #     while True:
-    #         try:
-    #             book_name, book_author, book_date = input("Please enter title, author name, year of edition "
-    #                                                       "split by comma as in the example 'River,Anthony Bach,"
-    #                                                       "1956': ").split(',')
-    #             return str(book_name), str(book_author), int(book_date)
-    #         except ValueError:
-    #             print("Could you check your input is as an example 'River,Anthony Bach,1956' and try to enter book "
-    #                   "parameters again.")
-    #
-    # @staticmethod
-    # def ask_for_reader_params():
-    #     """
-    #     Method asks user for first_name, last_name, birth_year and validate that user entered all these parameters
-    #     :return:
-    #     first_name -> str
-    #     last_name -> str
-    #     birth_year -> int
-    #     """
-    #     while True:
-    #         try:
-    #             first_name, last_name, birth_year = input("Please enter first name, last name, birth "
-    #                                                       "year split by comma as in the example 'Linn,Lindon,"
-    #                                                       "1997': ").split(',')
-    #             return str(first_name), str(last_name), int(birth_year)
-    #         except ValueError:
-    #             print("Could you check your input is as an example 'Linn,Lindon,,1997' and try to enter reader "
-    #                   "parameters again.")
+    @staticmethod
+    def ask_for_ids():
+        """
+        Method asks user for book_id and reader_id, checks if there are a valid positive integers
+        :return:
+        book_id -> int
+        reader_id -> int
+        """
+        while True:
+            book_id, reader_id = input("Please enter book id and reader id split by comma: ").split(',')
+            if book_id.isdigit() and reader_id.isdigit():
+                return int(book_id), int(reader_id)
+            else:
+                print("You have entered not a valid positive integers as ids.")
+
+    @staticmethod
+    def ask_for_id():
+        while True:
+            try:
+                book_id = input("Please enter book id: ").isdigit()
+                return int(book_id)
+            except ValueError:
+                print("Incorrect id. Please try again.")
+
+    @staticmethod
+    def ask_for_book_params():
+        """
+        Method asks user for book_name, book_author, book_date and validate that user entered all these parameters
+        :return:
+        book_name -> str
+        book_author -> str
+        book_date -> int
+        """
+        while True:
+            try:
+                book_name, book_author, book_date = input("Please enter title, author name, year of edition "
+                                                          "split by comma as in the example 'River,Anthony Bach,"
+                                                          "1956': ").split(',')
+                return str(book_name), str(book_author), int(book_date)
+            except ValueError:
+                print("Could you check your input is as an example 'River,Anthony Bach,1956' and try to enter book "
+                      "parameters again.")
+
+    @staticmethod
+    def ask_for_reader_params():
+        """
+        Method asks user for first_name, last_name, birth_year and validate that user entered all these parameters
+        :return:
+        first_name -> str
+        last_name -> str
+        birth_year -> int
+        """
+        while True:
+            try:
+                first_name, last_name, birth_year = input("Please enter first name, last name, birth "
+                                                          "year split by comma as in the example 'Linn,Lindon,"
+                                                          "1997': ").split(',')
+                return str(first_name), str(last_name), int(birth_year)
+            except ValueError:
+                print("Could you check your input is as an example 'Linn,Lindon,,1997' and try to enter reader "
+                      "parameters again.")
 
     def add_book_to_library(self, book_name: str, book_author: str, book_date: int) -> str:
         """
@@ -102,13 +110,14 @@ class Library:
         else:
             return 'Error: your book was not saved!'
 
-    def delete_book_from_library(self, temp_id: int) -> str:
+    def delete_book_from_library(self, temp_id) -> str:
         """
         Method deletes book from library list with user's book_id input
         Delete a book from a json file
         :return:
         str with data of deleted book
         """
+
         book = self.__storage.load_books_from_db_by_input(book_id=temp_id)
         if not book:
             return f'There is no book with id = {temp_id}'
@@ -134,7 +143,7 @@ class Library:
             book = self.__storage.load_books_from_db_by_input(book_id=temp_id)
             if not book:
                 result_message = f'There is no book with id = {temp_id}'
-                temp_message += result_message +'\n'
+                temp_message += result_message + '\n'
 
             book = book[0]
 
@@ -175,7 +184,7 @@ class Library:
     #     else:
     #         return 'Error: the reader was not saved!'
 
-    def create_reader(self, first_name: str, last_name: str, birth_year: int, email: str, password: str) -> str:
+    def create_reader(self, first_name: str, last_name: str, birth_year: int) -> str:
         """
         Method adds reader to library list with user's input of first_name, last_name, birth_year. Reader_id is a random
         unique int, reader_book_id is None by default
@@ -184,10 +193,9 @@ class Library:
         str with data of added reader
         """
         reader = Reader(first_name, last_name, birth_year)
-        user_credentials = UserCredentials(email, password, reader.reader_id)
-        if self.__storage.add_reader_to_db(reader, user_credentials):
-            result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.reader_id} and email ' \
-                             f'{user_credentials.email} is successfully created.'
+        if self.__storage.add_reader_to_db(reader):
+            result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.reader_id} ' \
+                             f'is successfully created.'
             return result_message
         else:
             return 'Error: the reader was not saved!'
@@ -199,7 +207,7 @@ class Library:
         :return:
         str with data of deleted reader
         """
-        reader = self.__storage.load_books_from_db_by_input(reader_id=temp_id)
+        reader = self.__storage.load_reader_from_db_by_input(reader_id=temp_id)
         if not reader:
             return f'There is no reader with id = {temp_id}'
 
@@ -246,7 +254,8 @@ class Library:
         reader has at least one book
         :return:
         """
-        return [temp_reader for temp_reader in self.__storage.load_readers_from_db() if not temp_reader.get_reader_book_id()]
+        return [temp_reader for temp_reader in self.__storage.load_readers_from_db() if
+                not temp_reader.get_reader_book_id()]
 
     def give_book_to_reader(self, book_id: int, reader_id: int) -> str:
         """
@@ -277,9 +286,9 @@ class Library:
 
         reader = reader[0]
 
-        book.set_book_id_reader(reader_id)
+        # book.set_book_id_reader(reader_id)
         reader.set_reader_book_id(book_id)
-        self.__storage.change_book_in_db(book)
+        # self.__storage.change_book_in_db(book)
         self.__storage.change_reader_in_db(reader)
         result_message = f'Book with id {book_id} was given to reader with id {reader_id}.'
         return result_message
@@ -288,7 +297,7 @@ class Library:
         """
         Method gives book to reader by changing book_id_reader parameter of book object to actual reader_id and
         reader_book_id of reader object to actual book_id
-        :param book_id_list: list, is get from ask_for_ids method input
+        :param book_id: int, is get from ask_for_ids method input
         :param reader_id: int, is get from ask_for_ids method input
         :return: str with ids of book and reader
         """
@@ -465,7 +474,7 @@ class Library:
             print(reader)
 
     def get_reader_by_id(self, reader_id: int) -> Reader:
-        return self.__storage.load_reader_by_id(reader_id)
+        return self.__storage.load_reader_by_id()
 
-    def get_reader_by_email(self, reader_email: str) -> Reader:
-        return self.__storage.load_reader_by_email(reader_email)
+    def get_reader_by_email(self, reader_email: int) -> Reader:
+        return self.__storage.load_reader_by_email()

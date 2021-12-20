@@ -6,9 +6,8 @@
 
 from abc import ABC, abstractmethod
 
-from HW_06.units.book import Book
-from HW_06.units.reader import Reader
-from HW_site.library.units.user import UserCredentials
+from HW_13.units.book import Book
+from HW_13.units.reader import Reader
 
 
 class BaseDB(ABC):

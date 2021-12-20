@@ -2,18 +2,28 @@
 {% block content %}
 <div class="central-area">
   <div class="login-form">
+    {% if result_message %}
+        <h2>{{result_message}}</h2>
+        <br><br>
+    {% endif %}
+    {% for category, message in get_flashed_messages(with_categories=true) %}
+      <h3 class="{{category}}">{{ message }}</h3>
+      <br><br>
+    {% endfor %}
     <div class="authorization">
+      <form method="post">
+        <h3>Sign in</h3>
       <div class="login-lable">
-        Username:
+        Email:
       </div>
       <div class="login-input">
-        <input type="text" name="user_id">
+        <input type="text" name="email" placeholder="Email" required>
       </div>
       <div class="password-lable">
         Password:
       </div>
       <div class="password-input">
-        <input type="text" name="password">
+        <input type="text" name="password" placeholder="Password" required>
       </div>
       <div class="remember-lable">
         Remember:
@@ -22,8 +32,11 @@
         <input type="checkbox" name="remember_checkbox" value="on">
       </div>
       <div class="login-password-input">
-        <a href="logged_user.html"><input type="button" name="enter_login_password"value="Sign in"></a>
+        <center>
+          <button type="submit" class="mid-button">Sign in</button>
+        </center>
       </div>
+        </form>
     </div>
 </div>
 </div>

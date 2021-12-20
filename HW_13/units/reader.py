@@ -1,14 +1,13 @@
-from flask_login import UserMixin
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, ForeignKey
 
-from HW_site.library.data_base.sql_units.base_sqlalchemy import Base
+from HW_13.data_base.sql_units.base_sqlalchemy import Base
 
 """
 The module for the item "Reader"
 """
 
 
-class Reader(Base, UserMixin):
+class Reader(Base):
     """Part for table in data base creation"""
     __tablename__ = 'readers'
 
@@ -16,9 +15,10 @@ class Reader(Base, UserMixin):
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     birth_year = Column(Integer, nullable=False)
-    book_id_reader = Column(Integer, nullable=True)
+    reader_book_id = Column(Integer, nullable=True)
 
     """Class to create reader in library with unique parameter reader_id to each item"""
+
     def __init__(self, first_name: str,
                  last_name: str,
                  birth_year: int,
@@ -72,7 +72,6 @@ class Reader(Base, UserMixin):
     @classmethod
     def reader_from_dict(cls, dict_obj: dict):
         return cls(
-            reader_id=dict_obj['reader_id'],
             first_name=dict_obj['first_name'],
             last_name=dict_obj['last_name'],
             birth_year=dict_obj['birth_year'],

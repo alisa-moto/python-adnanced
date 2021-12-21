@@ -16,11 +16,11 @@ class BaseDB(ABC):
         pass
 
     @abstractmethod
-    def load_books_from_db_by_input(self, **kwargs):
+    def load_books_from_db_by_input(self, **kwargs) -> None:
         pass
 
     @abstractmethod
-    def save_books_to_db(self, books_obj: list):
+    def save_books_to_db(self, books_obj: list) -> None:
         pass
 
     @abstractmethod
@@ -28,7 +28,7 @@ class BaseDB(ABC):
         pass
 
     @abstractmethod
-    def load_reader_from_db_by_input(self, **kwargs):
+    def load_reader_from_db_by_input(self, **kwargs) -> None:
         pass
 
     @abstractmethod
@@ -36,19 +36,19 @@ class BaseDB(ABC):
         pass
 
     @abstractmethod
-    def add_book_to_db(self, books_obj: Book) -> bool:
+    def add_book_to_db(self, books_obj: Book) -> None:
         pass
 
     @abstractmethod
-    def delete_book_from_db(self, books_obj: Book) -> bool:
+    def delete_book_from_db(self, books_obj: Book) -> None:
         pass
 
     @abstractmethod
-    def add_reader_to_db(self, reader_obj: Reader) -> bool:
+    def add_reader_to_db(self, reader_obj: Reader) -> None:
         pass
 
     @abstractmethod
-    def delete_reader_from_db(self, reader_obj: Reader) -> bool:
+    def delete_reader_from_db(self, reader_obj: Reader) -> None:
         pass
 
     @abstractmethod
@@ -65,4 +65,20 @@ class BaseDB(ABC):
 
     @abstractmethod
     def load_reader_by_email(self, email: str) -> Reader:
+        pass
+
+    @abstractmethod
+    def select_books_by_asc(self, sort_key: int) -> list:
+        pass
+
+    @abstractmethod
+    def select_books_by_desc(self, sort_key: int) -> list:
+        pass
+
+    @abstractmethod
+    def select_readers_by_asc(self, sort_key: int) -> list:
+        pass
+
+    @abstractmethod
+    def select_readers_by_desc(self, sort_key: int) -> list:
         pass

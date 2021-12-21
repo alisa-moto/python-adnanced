@@ -19,20 +19,6 @@ class Library:
         if readers_list:
             self.__storage.save_readers_to_db(readers_list)
 
-    # def __get_book_by_id(self, _book_id: int):
-    #     for book in self.books_list:
-    #         if book.get_book_id() == _book_id:
-    #             return book
-    #     else:
-    #         return None
-    #
-    # def __get_reader_by_id(self, _reader_id: int):
-    #     for reader in self.readers_list:
-    #         if reader.get_reader_id() == _reader_id:
-    #             return reader
-    #     else:
-    #         return None
-
     @staticmethod
     def ask_for_ids():
         """
@@ -52,7 +38,7 @@ class Library:
     def ask_for_id():
         while True:
             try:
-                book_id = input("Please enter book id: ").isdigit()
+                book_id = input("Please enter needed id: ").isdigit()
                 return int(book_id)
             except ValueError:
                 print("Incorrect id. Please try again.")
@@ -151,38 +137,6 @@ class Library:
             result_message = f'Book {book.book_name} with id={book.book_id} is deleted from library.'
 
         return result_message
-
-    # def create_reader(self, first_name: str, last_name, birth_year) -> str:
-    #     """
-    #     Method adds reader to library list with user's input of first_name, last_name, birth_year. Reader_id is a random
-    #     unique int, reader_book_id is None by default
-    #     Save a new reader to a json file
-    #     :return:
-    #     str with data of added reader
-    #     """
-    #     reader = Reader(first_name, last_name, birth_year)
-    #     if self.__storage.add_reader_to_db(reader):
-    #         result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.reader_id} ' \
-    #                          f'is successfully created.'
-    #         return result_message
-    #     else:
-    #         return 'Error: the reader was not saved!'
-
-    # def create_reader(self, first_name: str, last_name, birth_year) -> str:
-    #     """
-    #     Method adds reader to library list with user's input of first_name, last_name, birth_year. Reader_id is a random
-    #     unique int, reader_book_id is None by default
-    #     Save a new reader to a json file
-    #     :return:
-    #     str with data of added reader
-    #     """
-    #     reader = Reader(first_name, last_name, birth_year)
-    #     if self.__storage.add_reader_to_db(reader):
-    #         result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.reader_id} ' \
-    #                          f'is successfully created.'
-    #         return result_message
-    #     else:
-    #         return 'Error: the reader was not saved!'
 
     def create_reader(self, first_name: str, last_name: str, birth_year: int) -> str:
         """
@@ -297,7 +251,7 @@ class Library:
         """
         Method gives book to reader by changing book_id_reader parameter of book object to actual reader_id and
         reader_book_id of reader object to actual book_id
-        :param book_id: int, is get from ask_for_ids method input
+        :param book_id_list: list, is get from ask_for_ids method input
         :param reader_id: int, is get from ask_for_ids method input
         :return: str with ids of book and reader
         """
@@ -420,48 +374,15 @@ class Library:
                              f'reader {reader.first_name} {reader.last_name}.'
         return result_message
 
-    def show_all_readers_books(self, reader_id: int) -> list:
+    def show_all_readers_books(self, reader_id: int) -> (list, str):
         reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
         if not reader:
             result_message = f'Reader with id = {reader_id} isn`t registered in the library'
-            return []
+            return [], result_message
 
         reader = reader[0]
 
         return reader.books
-
-    # def sort_books_by_name(self):
-    #     for book in sorted(self.books_list, key=lambda x: x.get_book_name()):
-    #         print(book)
-    #
-    # def sort_books_by_author(self):
-    #     for book in sorted(self.books_list, key=lambda x: x.get_book_author()):
-    #         print(book)
-    #
-    # def sort_books_by_date(self):
-    #     for book in sorted(self.books_list, key=lambda x: x.get_book_date()):
-    #         print(book)
-    #
-    # def sort_reader_by_first_name(self):
-    #     for reader in sorted(self.readers_list, key=lambda x: x.get_reader_first_name()):
-    #         print(reader)
-    #
-    # def sort_reader_by_last_name(self):
-    #     for reader in sorted(self.readers_list, key=lambda x: x.get_reader_last_name()):
-    #         print(reader)
-    #
-    # def sort_reader_by_birth_year(self):
-    #     for reader in sorted(self.readers_list, key=lambda x: x.get_birth_year()):
-    #         print(reader)
-
-    # # Additional methods for books, readers save and load from json files
-    # def save_books(self):
-    #     """Method takes storage object with json filenames and update book list and/or create file"""
-    #     self.__storage.save_books_to_db(self.books_list)
-    #
-    # def save_readers(self):
-    #     """Method takes storage object with json filenames and update reader list and/or create json file"""
-    #     self.__storage.save_readers_to_db(self.readers_list)
 
     def load_books(self):
         """Method takes storage object with json filenames and return book objects from dict"""
@@ -474,7 +395,19 @@ class Library:
             print(reader)
 
     def get_reader_by_id(self, reader_id: int) -> Reader:
-        return self.__storage.load_reader_by_id()
+        return self.__storage.load_reader_by_id(reader_id)
 
-    def get_reader_by_email(self, reader_email: int) -> Reader:
-        return self.__storage.load_reader_by_email()
+    def get_reader_by_email(self, reader_email: str) -> Reader:
+        return self.__storage.load_reader_by_email(reader_email)
+
+    def sort_books_by_asc(self, sort_key):
+        return self.__storage.select_books_by_asc(sort_key)
+
+    def sort_books_by_desc(self, sort_key):
+        return self.__storage.select_books_by_desc(sort_key)
+
+    def sort_readers_by_asc(self, sort_key):
+        return self.__storage.select_readers_by_asc(sort_key)
+
+    def sort_readers_by_desc(self, sort_key):
+        return self.__storage.select_readers_by_desc(sort_key)

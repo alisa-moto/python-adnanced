@@ -15,16 +15,14 @@ def choose_command():
           "List all books: 5\n"
           "List all available books: 6\n"
           "List all unavailable books: 7\n"
-          "Sort books by name: 8\n"
-          "Sort books by author: 9\n"
-          "Sort books by year: 10\n"
-          "Create reader: 11\n"
-          "Delete reader: 12\n"
-          "View all readers: 13\n"
-          "View readers with book: 14\n"
-          "Sort readers by first name: 15\n"
-          "Sort readers by last name: 16\n"
-          "Sort readers by birth year: 17\n")
+          "Sort books by asc order (1 - title, 2 - author, 3 - year): 8\n"
+          "Sort books by desc order (1 - title, 2 - author, 3 - year): 9\n"
+          "Create reader: 10\n"
+          "Delete reader: 11\n"
+          "View all readers: 12\n"
+          "View readers with book: 13\n"
+          "Sort readers by asc order (1 - name, 2 - surname, 3 - birth year): 14\n"
+          "Sort readers by desc order (1 - name, 2 - surname, 3 - birth year): 15\n")
 
     while True:
         admin_command = input("Please enter code of one of the command above: ")
@@ -53,27 +51,27 @@ def execute_command(_command_key):
         for book in lib.print_taken_books():
             print(book)
     if _command_key == 8:
-        lib.sort_books_by_name()
+        for book in lib.sort_books_by_asc(Library.ask_for_id()):
+            print(book)
     if _command_key == 9:
-        lib.sort_books_by_author()
+        for book in lib.sort_books_by_desc(Library.ask_for_id()):
+            print(book)
     if _command_key == 10:
-        lib.sort_books_by_date()
-    if _command_key == 11:
         print(lib.create_reader(*Library.ask_for_reader_params()))
-    if _command_key == 12:
+    if _command_key == 11:
         print(lib.delete_reader(Library.ask_for_id()))
-    if _command_key == 13:
+    if _command_key == 12:
         for reader in lib.print_all_readers():
             print(reader)
-    if _command_key == 14:
+    if _command_key == 13:
         for reader in lib.print_readers_with_book():
             print(reader)
+    if _command_key == 14:
+        for reader in lib.sort_readers_by_asc(Library.ask_for_id()):
+            print(reader)
     if _command_key == 15:
-        lib.sort_reader_by_first_name()
-    if _command_key == 16:
-        lib.sort_reader_by_last_name()
-    if _command_key == 17:
-        lib.sort_reader_by_birth_year()
+        for reader in lib.sort_readers_by_desc(Library.ask_for_id()):
+            print(reader)
 
 
 if __name__ == '__main__':
@@ -91,13 +89,3 @@ if __name__ == '__main__':
 
     storage = SQLDataBase('postgres', 'pass123', 'postgres')
     lib = Library(storage)
-
-    lib.print_all_books()
-    print(os.linesep)
-    lib.print_all_readers()
-    print(os.linesep)
-    execute_command(choose_command())
-    print(os.linesep)
-    lib.print_all_books()
-    print(os.linesep)
-    lib.print_all_readers()

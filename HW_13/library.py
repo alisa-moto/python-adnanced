@@ -220,8 +220,6 @@ class Library:
         :return: str with ids of book and reader
         """
 
-        result_message = ''
-
         book = self.__storage.load_books_from_db_by_input(book_id=book_id)
         if not book:
             result_message = f'Error: book with id {book_id} is not found.'
@@ -240,9 +238,9 @@ class Library:
 
         reader = reader[0]
 
-        # book.set_book_id_reader(reader_id)
+        book.set_book_id_reader(reader_id)
         reader.set_reader_book_id(book_id)
-        # self.__storage.change_book_in_db(book)
+        self.__storage.change_book_in_db(book)
         self.__storage.change_reader_in_db(reader)
         result_message = f'Book with id {book_id} was given to reader with id {reader_id}.'
         return result_message
@@ -295,7 +293,6 @@ class Library:
         :param reader_id: int, is get from ask_for_ids method input
         :return: str with ids of book and reader
         """
-        result_message = ''
 
         book = self.__storage.load_books_from_db_by_input(book_id=book_id)
         if not book:
@@ -324,7 +321,7 @@ class Library:
         reader.set_reader_book_id(None)
         self.__storage.change_book_in_db(book)
         self.__storage.change_reader_in_db(reader)
-        result_message = f'Book with id {book.book_name} was taken back from ' \
+        result_message = f'Book {book.book_name} with id {book.book_id} was taken back from ' \
                          f'reader {reader.first_name} {reader.last_name}.'
         return result_message
 

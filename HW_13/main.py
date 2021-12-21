@@ -89,3 +89,6 @@ if __name__ == '__main__':
 
     storage = SQLDataBase('postgres', 'pass123', 'postgres')
     lib = Library(storage)
+
+
+    execute_command(choose_command())

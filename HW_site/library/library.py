@@ -257,8 +257,6 @@ class Library:
         :return: str with ids of book and reader
         """
 
-        result_message = ''
-
         book = self.__storage.load_books_from_db_by_input(book_id=book_id)
         if not book:
             result_message = f'Error: book with id {book_id} is not found.'
@@ -411,48 +409,15 @@ class Library:
                              f'reader {reader.first_name} {reader.last_name}.'
         return result_message
 
-    def show_all_readers_books(self, reader_id: int) -> list:
+    def show_all_readers_books(self, reader_id: int) -> (list, str):
         reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
         if not reader:
             result_message = f'Reader with id = {reader_id} isn`t registered in the library'
-            return []
+            return [], result_message
 
         reader = reader[0]
 
         return reader.books
-
-    # def sort_books_by_name(self):
-    #     for book in sorted(self.books_list, key=lambda x: x.get_book_name()):
-    #         print(book)
-    #
-    # def sort_books_by_author(self):
-    #     for book in sorted(self.books_list, key=lambda x: x.get_book_author()):
-    #         print(book)
-    #
-    # def sort_books_by_date(self):
-    #     for book in sorted(self.books_list, key=lambda x: x.get_book_date()):
-    #         print(book)
-    #
-    # def sort_reader_by_first_name(self):
-    #     for reader in sorted(self.readers_list, key=lambda x: x.get_reader_first_name()):
-    #         print(reader)
-    #
-    # def sort_reader_by_last_name(self):
-    #     for reader in sorted(self.readers_list, key=lambda x: x.get_reader_last_name()):
-    #         print(reader)
-    #
-    # def sort_reader_by_birth_year(self):
-    #     for reader in sorted(self.readers_list, key=lambda x: x.get_birth_year()):
-    #         print(reader)
-
-    # # Additional methods for books, readers save and load from json files
-    # def save_books(self):
-    #     """Method takes storage object with json filenames and update book list and/or create file"""
-    #     self.__storage.save_books_to_db(self.books_list)
-    #
-    # def save_readers(self):
-    #     """Method takes storage object with json filenames and update reader list and/or create json file"""
-    #     self.__storage.save_readers_to_db(self.readers_list)
 
     def load_books(self):
         """Method takes storage object with json filenames and return book objects from dict"""

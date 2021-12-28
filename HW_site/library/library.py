@@ -184,9 +184,9 @@ class Library:
         str with data of added reader
         """
         reader = Reader(first_name, last_name, birth_year)
-        user_credentials = UserCredentials(email, password, reader.reader_id)
+        user_credentials = UserCredentials(email, password, reader.id)
         if self.__storage.add_reader_to_db(reader, user_credentials):
-            result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.reader_id} and email ' \
+            result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.id} and email ' \
                              f'{user_credentials.email} is successfully created.'
             return result_message
         else:
@@ -199,14 +199,14 @@ class Library:
         :return:
         str with data of deleted reader
         """
-        reader = self.__storage.load_books_from_db_by_input(reader_id=temp_id)
+        reader = self.__storage.load_books_from_db_by_input(id=temp_id)
         if not reader:
             return f'There is no reader with id = {temp_id}'
 
         reader = reader[0]
 
         self.__storage.delete_reader_from_db(reader)
-        result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.reader_id}' \
+        result_message = f'Reader {reader.first_name} {reader.last_name} with id={reader.id}' \
                          f' is deleted from library.'
         return result_message
 
@@ -268,7 +268,7 @@ class Library:
             result_message = f'The book with id {book_id} has already been taken.'
             return result_message
 
-        reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
+        reader = self.__storage.load_reader_from_db_by_input(id=reader_id)
         if not reader:
             result_message = f'Error: reader with id {reader_id} is not found.'
             return result_message
@@ -294,7 +294,7 @@ class Library:
         result_message = ''
         temp_message = ''
 
-        reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
+        reader = self.__storage.load_reader_from_db_by_input(id=reader_id)
         if not reader:
             result_message = f'Error: reader with id {reader_id} is not found.'
             return result_message
@@ -343,14 +343,14 @@ class Library:
             result_message = f'The book with id {book_id} is not taken.'
             return result_message
 
-        reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
+        reader = self.__storage.load_reader_from_db_by_input(id=reader_id)
         if not reader:
             result_message = f'Error: reader with id {reader_id} is not found.'
             return result_message
 
         reader = reader[0]
 
-        if book.get_book_id_reader() != reader.get_reader_id():
+        if book.get_book_id_reader() != reader.get_id():
             result_message = f'Error: reader {reader.first_name} {reader.last_name} has not' \
                              f' taken book with id {book_id}.'
             return result_message
@@ -374,7 +374,7 @@ class Library:
         result_message = ''
         temp_message = ''
 
-        reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
+        reader = self.__storage.load_reader_from_db_by_input(id=reader_id)
         if not reader:
             result_message = f'Error: reader with id {reader_id} is not found.'
             return result_message
@@ -395,7 +395,7 @@ class Library:
                 temp_message += result_message + '\n'
                 continue
 
-            if book.get_book_id_reader() != reader.get_reader_id():
+            if book.get_book_id_reader() != reader.get_id():
                 result_message = f'Error: reader {reader.first_name} {reader.last_name} has not' \
                                  f' taken book with id {book_id}.'
                 temp_message += result_message + '\n'
@@ -410,7 +410,7 @@ class Library:
         return result_message
 
     def show_all_readers_books(self, reader_id: int) -> (list, str):
-        reader = self.__storage.load_reader_from_db_by_input(reader_id=reader_id)
+        reader = self.__storage.load_reader_from_db_by_input(id=reader_id)
         if not reader:
             result_message = f'Reader with id = {reader_id} isn`t registered in the library'
             return [], result_message

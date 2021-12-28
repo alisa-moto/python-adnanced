@@ -108,7 +108,7 @@ class SQLDataBase(BaseDB):
         return True
 
     def change_reader_in_db(self, reader_obj: Reader) -> bool:
-        reader = self.__session.query(Reader).filter(Reader.reader_id == reader_obj.reader_id).first()
+        reader = self.__session.query(Reader).filter(Reader.id == reader_obj.id).first()
 
         if not reader:
             return False
@@ -122,8 +122,9 @@ class SQLDataBase(BaseDB):
         return True
 
     def load_reader_by_id(self, reader_id: int) -> Reader:
-        return self.__session.query(Reader).filter_by(reader_id=reader_id).first()
+        return self.__session.query(Reader).filter_by(id=reader_id).first()
 
     def load_reader_by_email(self, email: str) -> Reader:
-        user_credentials = self.__session.query(UserCredentials.reader_id).filter_by(email=email).first()
-        return self.__session.query(Reader).filter_by(reader_id=user_credentials.reader_id).first()
+        user_credentials = self.__session.query(UserCredentials).filter_by(email=email).first()
+        if user_credentials is not None:
+            return self.__session.query(Reader).filter_by(id=user_credentials.reader_id).first()

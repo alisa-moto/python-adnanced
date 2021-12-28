@@ -12,12 +12,26 @@
 			<img src = "../static/images/small_images/folder.jpg" alt = "Folder Image"/><span class="head-text">Library v 0.01 (It's your turn to read! ;))</span><img src = "../static/images/small_images/folder.jpg" alt = "Folder Image"/>
 		</div>
 
-		<div class="second-head"><span class="right-head-text">You are signed in as a <strong>James Bond     </strong><a href="login">Logout</a></span></div>
+		<div class="second-head">
+				{% if current_user.is_authenticated %}
+					<label class="right-head-text">Hello, {{current_user.get_reader_first_name()}}</label>
+				{% else %}
+					<label class="right-head-button">Hello, Guest</label>
+				{% endif %}
+
+					{% if not current_user.is_authenticated %}
+						</strong><a href="login">Sign In</a>
+						</strong><a href="sign_up">Sign Up</a>
+					{% else %}
+						</strong><a href="logout">Logout</a>
+					{% endif %}
+				</ul>
+			</div>
 
 		<div class="main-area">
 		<div class="left-area">
 			<strong>Library options:</strong>
-			<br/><a href="index">Main page</a>
+			<br/><a href="/">Main page</a>
 			<br/><a href="books">Show all books</a>
 			<br/><a href="add_book">Add book</a>
 			<br/><a href="delete_book">Delete book</a>

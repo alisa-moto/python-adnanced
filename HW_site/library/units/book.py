@@ -16,7 +16,7 @@ class Book(Base):
     book_name = Column(String, nullable=False)
     book_author = Column(String, nullable=False)
     book_date = Column(Integer, nullable=False)
-    book_id_reader = Column(Integer, ForeignKey('readers.reader_id'), nullable=True)
+    book_id_reader = Column(Integer, ForeignKey('readers.id'), nullable=True)
     reader = relationship('Reader', backref='books')
 
     """Class to create book in library with unique parameter book_id to each item"""

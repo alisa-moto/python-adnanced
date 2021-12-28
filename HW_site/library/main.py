@@ -28,7 +28,7 @@ def load_user(user_id):
     return lib.get_reader_by_id(user_id)
 
 
-@app.route('/index')
+@app.route('/')
 def home_page():
     return render_template('index.html')
 
@@ -195,6 +195,10 @@ if __name__ == '__main__':
     # ]
 
     lib = Library(storage)
+    # lib.create_reader('test', 'test', 1009, 'moka@test.com', '123')
     app.run()
 
-    lib.create_reader('test', 'test', 1009, 'moka@test.com', 123)
+    # storage.load_reader_by_email('test@test.test')
+    # storage.load_reader_by_id(1)
+
+    # test@test.test

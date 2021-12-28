@@ -7,8 +7,14 @@ body, html {
 	top: -5px;
 }
 .right-head-text {
-	vertical-align: sub
+    position: relative;
+
 }
+
+.right-head-button {
+    right: 5px;
+}
+
 .second-head {
 	position: relative;
 	border-bottom: 3px solid;
@@ -58,7 +64,7 @@ body, html {
 	border: 3px solid #B8B8B8;
 	padding: 10px;
 	margin: 10px;
-	height: 100px;
+	height: 300px;
 	background-color: #E0E0E0;
 }
 .footer {

@@ -12,11 +12,11 @@ class Reader(Base, UserMixin):
     """Part for table in data base creation"""
     __tablename__ = 'readers'
 
-    reader_id = Column(Integer, primary_key=True, nullable=False, unique=True)
+    id = Column(Integer, primary_key=True, nullable=False, unique=True)
     first_name = Column(String, nullable=False)
     last_name = Column(String, nullable=False)
     birth_year = Column(Integer, nullable=False)
-    book_id_reader = Column(Integer, nullable=True)
+    reader_book_id = Column(Integer, nullable=True)
 
     """Class to create reader in library with unique parameter reader_id to each item"""
     def __init__(self, first_name: str,
@@ -31,7 +31,7 @@ class Reader(Base, UserMixin):
         self.reader_book_id = reader_book_id
 
     def __str__(self):
-        return f'Reader id: {self.reader_id}, {self.first_name}, {self.last_name}, {self.birth_year}'
+        return f'Reader id: {self.id}, {self.first_name}, {self.last_name}, {self.birth_year}'
 
     def __repr__(self):
         cls_name = __class__.__name__
@@ -42,8 +42,8 @@ class Reader(Base, UserMixin):
             ]
         )
 
-    def get_reader_id(self) -> int:
-        return self.reader_id
+    def get_id(self) -> int:
+        return self.id
 
     def get_reader_first_name(self) -> str:
         return self.first_name
@@ -62,7 +62,7 @@ class Reader(Base, UserMixin):
 
     def reader_to_dict(self) -> dict:
         return {
-            "reader_id": self.reader_id,
+            "id": self.id,
             "first_name": self.first_name,
             "last_name": self.last_name,
             "birth_year": self.birth_year,
@@ -72,7 +72,7 @@ class Reader(Base, UserMixin):
     @classmethod
     def reader_from_dict(cls, dict_obj: dict):
         return cls(
-            reader_id=dict_obj['reader_id'],
+            id=dict_obj['id'],
             first_name=dict_obj['first_name'],
             last_name=dict_obj['last_name'],
             birth_year=dict_obj['birth_year'],
@@ -80,7 +80,7 @@ class Reader(Base, UserMixin):
         )
 
     def get_all_param(self, reader_obj):
-        self.reader_id = reader_obj.reader_id
+        self.id = reader_obj.id
         self.first_name = reader_obj.first_name
         self.last_name = reader_obj.last_name
         self.birth_year = reader_obj.birth_year

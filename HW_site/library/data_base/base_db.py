@@ -45,7 +45,7 @@ class BaseDB(ABC):
         pass
 
     @abstractmethod
-    def add_reader_to_db(self, reader_obj: Reader) -> bool:
+    def add_reader_to_db(self, reader_obj: Reader, user_obj: UserCredentials) -> bool:
         pass
 
     @abstractmethod

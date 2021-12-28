@@ -1,7 +1,7 @@
-from HW_06.data_base_pack.json_db_load import JsonDBLoad
-from HW_06.units.book import Book
-from HW_06.library import Library
-from HW_06.units.reader import Reader
+from data_base_pack.json_db_load import JsonDBLoad
+from units.book import Book
+from library import Library
+from units.reader import Reader
 
 import os
 

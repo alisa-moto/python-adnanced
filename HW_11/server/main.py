@@ -1,5 +1,5 @@
 import socket
-from HW_11.utils.msg_utils import send_msg, recv_msg, default_encoding
+from HW_11.server.utils.msg_utils import send_msg, recv_msg, default_encoding
 
 N = 5
 

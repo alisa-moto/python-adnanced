@@ -1,6 +1,6 @@
-from data_base_pack.base_db import BaseDB
-from test.Test_HW_08.server.units.book import Book
-from test.Test_HW_08.server.units.reader import Reader
+from HW_08.server.library.data_base_pack.base_db import BaseDB
+from HW_08.server.library.units.book import Book
+from HW_08.server.library.units.reader import Reader
 """
 The module for the library with readers and books lists in it
 """

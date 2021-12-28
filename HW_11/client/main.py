@@ -1,8 +1,5 @@
-import socket
 import time
 
-from HW_11.utils.msg_utils import send_msg, recv_msg, default_encoding
-import concurrent.futures as cf
 
 # Клиент
 # 1. генерирует простые числа в диапазоне от 0 до 2000000 (их всего 148933)

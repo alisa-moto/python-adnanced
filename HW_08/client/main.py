@@ -5,10 +5,9 @@ from HW_08.client.utils.msg_utils import send_msg, recv_msg, default_encoding
 def run_client(client_ip, client_port):
     with socket() as sock:
         sock.connect((client_ip, client_port))
-        # client_msg = input("Please enter your name to proceed or 'bye' to exit: ")
-        #
-        # while client_msg.lower().strip() != 'bye':
-        while True:
+        client_msg = input("Please enter your name to proceed or 'bye' to exit: ")
+
+        while client_msg.lower().strip() != 'bye':
             received_data = recv_msg(sock)
             if not received_data:
                 print('There is no message. Try again later.')

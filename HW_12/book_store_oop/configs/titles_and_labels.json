@@ -1,0 +1,60 @@
+[{
+  "MAIN_TITLE":"Book Store"
+},
+{
+   "TITLE_LABEL":"Title",
+     "row":0,
+     "column":0
+},
+{
+   "AUTHOR_LABEL":"Author",
+     "row":0,
+     "column":2
+},
+{
+   "YEAR_LABEL":"Year",
+     "row":1,
+     "column":0
+},
+{
+   "ISBN_LABEL":"ISBN",
+     "row":1,
+     "column":2
+},
+{
+   "VIEW_BUTTON":"View all",
+     "width":12,
+     "row":2,
+     "column":3
+},
+{
+   "SEARCH_BUTTON":"Search entry",
+     "width":12,
+     "row":3,
+     "column":3
+},
+{
+   "ADD_BUTTON":"Add entry",
+     "width":12,
+     "row":4,
+     "column":3
+},
+{
+   "UPDATE_BUTTON":"Update",
+     "width":12,
+     "row":5,
+     "column":3
+},
+{
+   "DELETE_BUTTON":"Delete",
+     "width":12,
+     "row":6,
+     "column":3
+},
+{
+   "CLOSE_BUTTON":"Close",
+     "width":12,
+     "row":7,
+     "column":3
+}
+]
